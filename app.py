@@ -9,344 +9,301 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- QR Code ----------------
+# ---------------- قراءة QR ----------------
 
-with open("QR.jpeg", "rb") as image_file:
+with open("QR.JPEG", "rb") as image_file:
     qr_base64 = base64.b64encode(image_file.read()).decode()
 
-drive_url = "https://drive.google.com/drive/folders/1iQAwK4MJc2qY7GIf2XUJyms26E8HoMtN?usp=drive_link"
-
-# ---------------- التصميم ----------------
+# ---------------- تصميم CSS ----------------
 
 st.markdown("""
 <style>
 
-html, body, [class*="css"]{
-    font-family: sans-serif;
-    color: white;
-}
-
-/* الخلفية */
-
 [data-testid="stAppViewContainer"]{
-    background:
-    linear-gradient(
-    135deg,
-    #050505,
-    #12061d,
-    #1d0033
-    );
-
-    overflow-x:hidden;
+background: linear-gradient(135deg, #050505, #0f0a1f, #1a0026);
+background-attachment: fixed;
+overflow-x:hidden;
 }
-
-/* الهيدر */
 
 [data-testid="stHeader"]{
-    background: rgba(0,0,0,0);
+background: rgba(0,0,0,0);
 }
 
-/* إزالة المسافات */
-
-.block-container{
-    padding-top: 2rem;
-    padding-bottom: 6rem;
+html, body, [class*="css"]{
+color:white;
+font-family:sans-serif;
+scroll-behavior:smooth;
 }
 
-/* العنوان */
+/* ---------------- العنوان ---------------- */
+
+.hero{
+padding-top:60px;
+padding-bottom:30px;
+animation: fadeUp 1s ease;
+}
 
 .hero-title{
-    font-size:95px;
-    font-weight:900;
-    line-height:0.95;
+font-size:90px;
+font-weight:900;
+line-height:1;
+margin-bottom:15px;
 
-    background: linear-gradient(
-    90deg,
-    #ff66d9,
-    #c026ff,
-    #7c3aed
-    );
+background: linear-gradient(
+90deg,
+#ff4fd8,
+#b026ff,
+#7a5cff
+);
 
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-    animation: fadeUp 1s ease;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
-
-/* النص الفرعي */
 
 .hero-sub{
-    font-size:28px;
-    color:#fbcfe8;
-    margin-top:10px;
-    margin-bottom:35px;
-
-    animation: fadeUp 1.4s ease;
+font-size:28px;
+color:#f5d0fe;
 }
 
-/* بطاقات */
+/* ---------------- البطاقات ---------------- */
 
 .glass{
-    background: rgba(255,255,255,0.05);
+background: rgba(255,255,255,0.05);
 
-    padding:28px;
+padding:28px;
 
-    border-radius:28px;
+border-radius:28px;
 
-    backdrop-filter: blur(12px);
+backdrop-filter: blur(12px);
 
-    border:1px solid rgba(255,255,255,0.08);
+margin-top:22px;
 
-    margin-top:25px;
+border:1px solid rgba(255,255,255,0.08);
 
-    transition:0.4s;
+box-shadow:0px 0px 18px rgba(176,38,255,0.15);
 
-    animation: fadeUp 1s ease;
+transition:0.4s;
+
+animation: fadeUp 1s ease;
 }
 
 .glass:hover{
-    transform: translateY(-5px);
-
-    box-shadow:0px 0px 30px rgba(255,0,170,0.25);
+transform:translateY(-5px);
+box-shadow:0px 0px 30px rgba(255,79,216,0.28);
 }
-
-/* العناوين */
 
 .section-title{
-    font-size:34px;
-    font-weight:bold;
-    margin-bottom:18px;
+font-size:34px;
+font-weight:800;
+margin-bottom:18px;
 
-    background: linear-gradient(
-    90deg,
-    #ff66d9,
-    #9333ea
-    );
+background: linear-gradient(
+90deg,
+#ff4fd8,
+#b026ff
+);
 
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-/* النصوص */
-
-.main-text{
-    font-size:20px;
-    line-height:1.7;
-    color:#f8fafc;
+.text{
+font-size:20px;
+line-height:1.9;
+color:#f3f4f6;
 }
 
-/* المهارات */
+/* ---------------- التواصل ---------------- */
+
+.contact-box{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
+margin-bottom:20px;
+}
+
+.contact-item{
+flex:1;
+min-width:260px;
+
+background: rgba(255,255,255,0.05);
+
+padding:20px;
+
+border-radius:22px;
+
+border:1px solid rgba(255,255,255,0.08);
+
+font-size:19px;
+
+line-height:2;
+}
+
+/* ---------------- المهارات ---------------- */
 
 .skill{
-    background: linear-gradient(
-    135deg,
-    #ff4fd8,
-    #7c3aed
-    );
+background: linear-gradient(
+135deg,
+#ff4fd8,
+#7a5cff
+);
 
-    padding:14px;
+padding:15px;
 
-    border-radius:16px;
+border-radius:18px;
 
-    text-align:center;
+text-align:center;
 
-    font-weight:bold;
+font-size:17px;
 
-    margin:8px 0;
+font-weight:bold;
 
-    color:white;
+margin:8px;
 
-    transition:0.3s;
+color:white;
+
+transition:0.3s;
+
+box-shadow:0px 0px 15px rgba(176,38,255,0.25);
 }
 
 .skill:hover{
-    transform:scale(1.05);
+transform:scale(1.05);
 }
 
-/* روابط */
+/* ---------------- الروابط ---------------- */
 
 a{
-    color:#f9a8d4;
-    text-decoration:none;
+color:#f9a8d4;
+text-decoration:none;
+font-weight:bold;
 }
 
 a:hover{
-    color:white;
+color:white;
 }
 
-/* QR */
+/* ---------------- الباركود ---------------- */
 
 .qr-box{
-    text-align:center;
+text-align:center;
 }
 
 .qr-box img{
-    border-radius:25px;
-    transition:0.4s;
+border-radius:25px;
+transition:0.4s;
+box-shadow:0px 0px 25px rgba(255,79,216,0.3);
 }
 
 .qr-box img:hover{
-    transform:scale(1.06);
+transform:scale(1.05);
 }
 
-/* الأنيميشن */
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(40px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0px);
-    }
-}
-
-/* الكائنات المتحركة */
-
-.animation-area{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:120px;
-    pointer-events:none;
-    z-index:999;
-}
-
-/* الديناصور */
-
-.dino{
-    position:absolute;
-    bottom:10px;
-    left:-120px;
-    font-size:70px;
-
-    animation: runDino 18s linear infinite;
-}
-
-/* القطوة */
+/* ---------------- القطة المتحركة ---------------- */
 
 .cat{
-    position:absolute;
-    bottom:12px;
-    right:-120px;
-    font-size:60px;
-
-    animation: runCat 18s linear infinite;
+position:fixed;
+bottom:0;
+right:-220px;
+width:160px;
+z-index:9999;
+animation: walk 20s linear infinite;
+pointer-events:none;
 }
 
-@keyframes runDino{
-    0%{
-        left:-120px;
-    }
-
-    100%{
-        left:110%;
-    }
+@keyframes walk{
+0%{
+right:-220px;
 }
 
-@keyframes runCat{
-    0%{
-        right:-120px;
-    }
-
-    100%{
-        right:110%;
-    }
+100%{
+right:110%;
+}
 }
 
-/* الفوتر */
+/* ---------------- الأنيميشن ---------------- */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0px);
+}
+
+}
+
+/* ---------------- الفوتر ---------------- */
 
 .footer{
-    text-align:center;
-    padding:50px;
-    color:#c084fc;
-    font-size:18px;
+text-align:center;
+padding:50px;
+font-size:18px;
+color:#c084fc;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- الكائنات المتحركة ----------------
+# ---------------- القطة المتحركة ----------------
 
 st.markdown("""
-<div class="animation-area">
-
-<div class="dino">
-🦖
-</div>
-
-<div class="cat">
-🐈
-</div>
-
-</div>
+<img class="cat" src="cat.gif">
 """, unsafe_allow_html=True)
 
-# ---------------- HERO ----------------
+# ---------------- العنوان ----------------
 
 st.markdown("""
+<div class="hero">
+
 <div class="hero-title">
 Ghzlan <br>
 AL-Rashidi
 </div>
-""", unsafe_allow_html=True)
 
-st.markdown("""
 <div class="hero-sub">
 Computer Science Graduate
+</div>
+
 </div>
 """, unsafe_allow_html=True)
 
 # ---------------- التواصل ----------------
 
-col1, col2 = st.columns(2)
+st.markdown("""
+<div class="contact-box">
 
-with col1:
-    st.markdown("""
-    <div class="glass">
+<div class="contact-item">
 
-    <div class="section-title">
-    Contact
-    </div>
+📞 +966 50 220 3750 <br>
 
-    <div class="main-text">
+📧 ghzlanalrashidi@gmail.com <br>
 
-    📞 +966 50 220 3750<br>
+📍 Unaizah, Al-Qassim, Saudi Arabia
 
-    📧 ghzlanalrashidi@gmail.com<br>
+</div>
 
-    📍 Unaizah, Al-Qassim, Saudi Arabia
+<div class="contact-item">
 
-    </div>
+🔗 <a href="https://github.com/Ghzlan175" target="_blank">
+github.com/Ghzlan175
+</a>
 
-    </div>
-    """, unsafe_allow_html=True)
+<br><br>
 
-with col2:
-    st.markdown("""
-    <div class="glass">
+🔗 <a href="https://linkedin.com/in/Ghzlan-alrashidi" target="_blank">
+linkedin.com/in/Ghzlan-alrashidi
+</a>
 
-    <div class="section-title">
-    Links
-    </div>
+</div>
 
-    <div class="main-text">
-
-    🔗 <a href="https://github.com/Ghzlan175" target="_blank">
-    github.com/Ghzlan175
-    </a><br><br>
-
-    🔗 <a href="https://linkedin.com/in/Ghzlan-alrashidi" target="_blank">
-    linkedin.com/in/Ghzlan-alrashidi
-    </a>
-
-    </div>
-
-    </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 # ---------------- PROFILE ----------------
 
@@ -357,7 +314,7 @@ st.markdown("""
 Profile
 </div>
 
-<div class="main-text">
+<div class="text">
 
 Computer Science graduate with a strong academic record
 (Second Class Honors).
@@ -384,13 +341,13 @@ st.markdown("""
 Education
 </div>
 
-<div class="main-text">
+<div class="text">
 
-<strong>Bachelor of Science in Computer Science</strong><br>
+Bachelor of Science in Computer Science <br>
 
-Al-Qassim University (2020 - 2025)<br>
+Al-Qassim University (2020 - 2025) <br>
 
-GPA : 4.70 / 5.00<br>
+
 
 Second-Class Honors
 
@@ -399,7 +356,7 @@ Second-Class Honors
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- المهارات ----------------
+# ---------------- TECHNICAL SKILLS ----------------
 
 st.markdown("""
 <div class="section-title">
@@ -417,7 +374,7 @@ skills = [
     "JavaScript",
     "Git & GitHub",
     "WordPress",
-    "OCR Technology"
+    "OCR"
 ]
 
 cols = st.columns(5)
@@ -431,7 +388,35 @@ for i, skill in enumerate(skills):
             unsafe_allow_html=True
         )
 
-# ---------------- المشاريع ----------------
+# ---------------- SOFT SKILLS ----------------
+
+st.markdown("""
+<div class="section-title">
+Soft Skills
+</div>
+""", unsafe_allow_html=True)
+
+soft_skills = [
+    "Problem Solving",
+    "Communication",
+    "Analytical Thinking",
+    "Time Management",
+    "Team Collaboration",
+    "Attention to Detail"
+]
+
+cols2 = st.columns(3)
+
+for i, skill in enumerate(soft_skills):
+
+    with cols2[i % 3]:
+
+        st.markdown(
+            f'<div class="skill">{skill}</div>',
+            unsafe_allow_html=True
+        )
+
+# ---------------- PROJECTS ----------------
 
 st.markdown("""
 <div class="glass">
@@ -440,25 +425,23 @@ st.markdown("""
 Projects
 </div>
 
-<div class="main-text">
+<div class="text">
 
-<strong>SmartLab | Graduation Project</strong><br><br>
+<b>SmartLab | Graduation Project</b><br><br>
 
 • Developed a smart laboratory management system
-using Python, Flutter, and SQLite.<br>
+using Python, Flutter, and SQLite.<br><br>
 
-• Integrated OCR technology
-for automated text recognition.<br>
+• Integrated OCR technology for automated text recognition.<br><br>
 
-• Designed a user-friendly interface
-to improve workflow efficiency.
+• Designed a user-friendly interface to improve workflow efficiency.
 
 </div>
 
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- الخبرات ----------------
+# ---------------- WORK EXPERIENCE ----------------
 
 st.markdown("""
 <div class="glass">
@@ -467,16 +450,13 @@ st.markdown("""
 Work Experience
 </div>
 
-<div class="main-text">
+<div class="text">
 
-<strong>
-IT Intern | King Saud Hospital
-</strong><br><br>
+<b>IT Intern | King Saud Hospital</b><br><br>
 
-• Developed and maintained
-the hospital website using WordPress.<br>
+• Developed and maintained the hospital website using WordPress.<br><br>
 
-• Managed databases using SQLite.<br>
+• Managed databases using SQLite.<br><br>
 
 • Provided technical support for systems.
 
@@ -485,7 +465,7 @@ the hospital website using WordPress.<br>
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- اللغات ----------------
+# ---------------- LANGUAGES ----------------
 
 st.markdown("""
 <div class="glass">
@@ -494,9 +474,10 @@ st.markdown("""
 Languages
 </div>
 
-<div class="main-text">
+<div class="text">
 
-• Arabic<br>
+• Arabic <br><br>
+
 • English
 
 </div>
@@ -506,6 +487,8 @@ Languages
 
 # ---------------- QR ----------------
 
+drive_url = "https://drive.google.com/drive/folders/1iQAwK4MJc2qY7GIf2XUJyms26E8HoMtN?usp=drive_link"
+
 st.markdown(f"""
 <div class="glass qr-box">
 
@@ -513,14 +496,12 @@ st.markdown(f"""
 Portfolio QR Code
 </div>
 
-<div class="main-text">
-Scan or click the QR Code
-</div>
-
-<br>
+<p class="text">
+Click the QR Code
+</p>
 
 <a href="{drive_url}" target="_blank">
-<img src="data:image/jpeg;base64,{qr_base64}" width="250">
+<img src="data:image/jpeg;base64,{qr_base64}" width="240">
 </a>
 
 </div>
