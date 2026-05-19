@@ -9,9 +9,9 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- قراءة QR ----------------
+# ---------------- قراءة صورة QR ----------------
 
-with open("QR.JPEG", "rb") as image_file:
+with open("QR.jpeg", "rb") as image_file:
     qr_base64 = base64.b64encode(image_file.read()).decode()
 
 # ---------------- تصميم CSS ----------------
@@ -38,7 +38,7 @@ scroll-behavior:smooth;
 /* ---------------- العنوان ---------------- */
 
 .hero{
-padding-top:60px;
+padding-top:70px;
 padding-bottom:30px;
 animation: fadeUp 1s ease;
 }
@@ -65,6 +65,33 @@ font-size:28px;
 color:#f5d0fe;
 }
 
+/* ---------------- التواصل ---------------- */
+
+.contact-box{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-top:25px;
+margin-bottom:20px;
+}
+
+.contact-item{
+flex:1;
+min-width:260px;
+
+background: rgba(255,255,255,0.05);
+
+padding:22px;
+
+border-radius:24px;
+
+border:1px solid rgba(255,255,255,0.08);
+
+font-size:19px;
+
+line-height:2;
+}
+
 /* ---------------- البطاقات ---------------- */
 
 .glass{
@@ -76,7 +103,7 @@ border-radius:28px;
 
 backdrop-filter: blur(12px);
 
-margin-top:22px;
+margin-top:25px;
 
 border:1px solid rgba(255,255,255,0.08);
 
@@ -111,33 +138,6 @@ background: linear-gradient(
 font-size:20px;
 line-height:1.9;
 color:#f3f4f6;
-}
-
-/* ---------------- التواصل ---------------- */
-
-.contact-box{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-margin-top:20px;
-margin-bottom:20px;
-}
-
-.contact-item{
-flex:1;
-min-width:260px;
-
-background: rgba(255,255,255,0.05);
-
-padding:20px;
-
-border-radius:22px;
-
-border:1px solid rgba(255,255,255,0.08);
-
-font-size:19px;
-
-line-height:2;
 }
 
 /* ---------------- المهارات ---------------- */
@@ -184,7 +184,7 @@ a:hover{
 color:white;
 }
 
-/* ---------------- الباركود ---------------- */
+/* ---------------- QR ---------------- */
 
 .qr-box{
 text-align:center;
@@ -206,7 +206,7 @@ transform:scale(1.05);
 position:fixed;
 bottom:0;
 right:-220px;
-width:160px;
+width:140px;
 z-index:9999;
 animation: walk 20s linear infinite;
 pointer-events:none;
@@ -222,7 +222,11 @@ right:110%;
 }
 }
 
-/* ---------------- الأنيميشن ---------------- */
+/* ---------------- ظهور العناصر ---------------- */
+
+.fade-section{
+animation: fadeUp 1s ease;
+}
 
 @keyframes fadeUp{
 
@@ -308,7 +312,7 @@ linkedin.com/in/Ghzlan-alrashidi
 # ---------------- PROFILE ----------------
 
 st.markdown("""
-<div class="glass">
+<div class="glass fade-section">
 
 <div class="section-title">
 Profile
@@ -335,7 +339,7 @@ and developing impactful technical solutions.
 # ---------------- EDUCATION ----------------
 
 st.markdown("""
-<div class="glass">
+<div class="glass fade-section">
 
 <div class="section-title">
 Education
@@ -343,11 +347,11 @@ Education
 
 <div class="text">
 
-Bachelor of Science in Computer Science <br>
+Bachelor of Science in Computer Science <br><br>
 
-Al-Qassim University (2020 - 2025) <br>
+Al-Qassim University (2020 - 2025) <br><br>
 
-
+GPA : 4.70 / 5.00 <br><br>
 
 Second-Class Honors
 
@@ -419,7 +423,7 @@ for i, skill in enumerate(soft_skills):
 # ---------------- PROJECTS ----------------
 
 st.markdown("""
-<div class="glass">
+<div class="glass fade-section">
 
 <div class="section-title">
 Projects
@@ -444,7 +448,7 @@ using Python, Flutter, and SQLite.<br><br>
 # ---------------- WORK EXPERIENCE ----------------
 
 st.markdown("""
-<div class="glass">
+<div class="glass fade-section">
 
 <div class="section-title">
 Work Experience
@@ -468,7 +472,7 @@ Work Experience
 # ---------------- LANGUAGES ----------------
 
 st.markdown("""
-<div class="glass">
+<div class="glass fade-section">
 
 <div class="section-title">
 Languages
@@ -485,12 +489,12 @@ Languages
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- QR ----------------
+# ---------------- QR CODE ----------------
 
 drive_url = "https://drive.google.com/drive/folders/1iQAwK4MJc2qY7GIf2XUJyms26E8HoMtN?usp=drive_link"
 
 st.markdown(f"""
-<div class="glass qr-box">
+<div class="glass qr-box fade-section">
 
 <div class="section-title">
 Portfolio QR Code
