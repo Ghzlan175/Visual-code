@@ -1,6 +1,7 @@
 import streamlit as st
+import base64
 
-# ---------------- PAGE CONFIG ----------------
+# ---------------- إعداد الصفحة ----------------
 
 st.set_page_config(
     page_title="Ghzlan AL-Rashidi",
@@ -8,212 +9,44 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- SETTINGS ----------------
+# ---------------- QR CODE ----------------
 
-with st.sidebar:
+with open("QR.jpeg", "rb") as image_file:
+    qr_base64 = base64.b64encode(image_file.read()).decode()
 
-    st.title("⚙️ Settings")
+# ---------------- التصميم ----------------
 
-    theme = st.selectbox(
-        "Theme",
-        ["Dark", "Light"]
-    )
-
-    language = st.selectbox(
-        "Language",
-        ["English", "العربية"]
-    )
-
-# ---------------- COLORS ----------------
-
-if theme == "Dark":
-
-    background = "linear-gradient(135deg, #050505, #0f0a1f, #1a0026)"
-    text_color = "white"
-    card_bg = "rgba(255,255,255,0.05)"
-
-else:
-
-    background = "linear-gradient(135deg, #ffffff, #fdf2f8, #ede9fe)"
-    text_color = "#111827"
-    card_bg = "rgba(255,255,255,0.9)"
-
-# ---------------- LANGUAGE ----------------
-
-if language == "English":
-
-    hero_job = "Computer Science Graduate"
-
-    profile_title = "PROFILE"
-
-    profile_text = """
-    Computer Science graduate with a strong academic record
-    (Second Class Honors).
-
-    Skilled in software development,
-    data analysis,
-    and web technologies.
-
-    Passionate about problem-solving,
-    continuous learning,
-    and developing impactful technical solutions.
-    """
-
-    education_title = "EDUCATION"
-
-    education_text = """
-    Bachelor of Science in Computer Science <br>
-
-    Al-Qassim University (2020 - 2025) <br>
-
-    GPA : 4.70 / 5.00 <br>
-
-    Second-Class Honors
-    """
-
-    skills_title = "TECHNICAL SKILLS"
-
-    soft_title = "SOFT SKILLS"
-
-    project_title = "PROJECTS"
-
-    project_text = """
-    <strong>SmartLab | Graduation Project</strong><br><br>
-
-    • Developed a smart laboratory management system using Python, Flutter, and SQLite.<br>
-
-    • Integrated OCR technology for automated text recognition.<br>
-
-    • Designed a user-friendly interface to improve workflow efficiency.
-    """
-
-    work_title = "WORK EXPERIENCE"
-
-    work_text = """
-    <strong>IT Intern | King Saud Hospital</strong><br><br>
-
-    • Developed and maintained the hospital website using WordPress.<br>
-
-    • Managed databases using SQLite.<br>
-
-    • Provided technical support for systems.
-    """
-
-    lang_title = "LANGUAGES"
-
-    lang_text = """
-    • Arabic <br>
-    • English
-    """
-
-    contact_title = "CONTACT"
-
-    links_title = "LINKS"
-
-    comments_title = "COMMENTS"
-
-    comment_placeholder = "Write your comment here..."
-
-    send_btn = "Send"
-
-else:
-
-    hero_job = "خريجة علوم حاسب"
-
-    profile_title = "نبذة عني"
-
-    profile_text = """
-    خريجة علوم حاسب بمعدل مرتفع ومرتبة الشرف الثانية.
-
-    لدي خبرة في تطوير البرمجيات وتحليل البيانات
-    وتقنيات الويب الحديثة.
-
-    شغوفة بحل المشكلات والتعلم المستمر
-    وبناء حلول تقنية فعالة.
-    """
-
-    education_title = "التعليم"
-
-    education_text = """
-    بكالوريوس علوم الحاسب <br>
-
-    جامعة القصيم (2020 - 2025) <br>
-
-    المعدل : 4.70 / 5.00 <br>
-
-    مرتبة الشرف الثانية
-    """
-
-    skills_title = "المهارات التقنية"
-
-    soft_title = "المهارات الشخصية"
-
-    project_title = "المشاريع"
-
-    project_text = """
-    <strong>SmartLab | مشروع التخرج</strong><br><br>
-
-    • تطوير نظام ذكي لإدارة المختبرات باستخدام Python و Flutter و SQLite.<br>
-
-    • دمج تقنية OCR للتعرف التلقائي على النصوص.<br>
-
-    • تصميم واجهة سهلة لتحسين كفاءة العمل.
-    """
-
-    work_title = "الخبرات"
-
-    work_text = """
-    <strong>متدربة تقنية معلومات | مستشفى الملك سعود</strong><br><br>
-
-    • تطوير وصيانة موقع المستشفى باستخدام WordPress.<br>
-
-    • إدارة قواعد البيانات باستخدام SQLite.<br>
-
-    • تقديم الدعم التقني للأنظمة والأجهزة.
-    """
-
-    lang_title = "اللغات"
-
-    lang_text = """
-    • العربية <br>
-    • الإنجليزية
-    """
-
-    contact_title = "التواصل"
-
-    links_title = "الروابط"
-
-    comments_title = "التعليقات"
-
-    comment_placeholder = "اكتب تعليقك هنا..."
-
-    send_btn = "إرسال"
-
-# ---------------- CSS ----------------
-
-st.markdown(f"""
+st.markdown("""
 <style>
 
-[data-testid="stAppViewContainer"]{{
-background:{background};
-background-attachment:fixed;
-}}
+[data-testid="stAppViewContainer"]{
+background: linear-gradient(
+135deg,
+#050505,
+#0f0a1f,
+#1a0026
+);
+background-attachment: fixed;
+overflow:hidden;
+}
 
-[data-testid="stHeader"]{{
+[data-testid="stHeader"]{
 background: rgba(0,0,0,0);
-}}
+}
 
-html, body, [class*="css"]{{
-color:{text_color};
+html, body, [class*="css"]{
+color:white;
 font-family:sans-serif;
 scroll-behavior:smooth;
-}}
+}
 
-.hero-title{{
-font-size:95px;
+/* ---------------- العنوان ---------------- */
+
+.hero-title{
+font-size:100px;
 font-weight:900;
 line-height:1;
-margin-top:70px;
+margin-top:80px;
 
 background: linear-gradient(
 90deg,
@@ -224,32 +57,103 @@ background: linear-gradient(
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-}}
 
-.hero-sub{{
-font-size:30px;
+animation: fadeUp 1s ease;
+}
+
+.hero-sub{
+font-size:32px;
+color:#f5d0fe;
 margin-top:20px;
 margin-bottom:40px;
-}}
 
-.glass{{
-background:{card_bg};
-padding:35px;
-border-radius:30px;
-backdrop-filter: blur(12px);
+animation: fadeUp 1.5s ease;
+}
+
+/* ---------------- التواصل ---------------- */
+
+.contact-box{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
 margin-top:30px;
+margin-bottom:30px;
+}
+
+.contact-card{
+flex:1;
+min-width:260px;
+
+background: rgba(255,255,255,0.06);
+
+padding:25px;
+
+border-radius:25px;
+
+backdrop-filter: blur(10px);
+
 border:1px solid rgba(255,255,255,0.1);
-box-shadow:0px 0px 20px rgba(176,38,255,0.15);
+
 transition:0.4s;
-}}
 
-.glass:hover{{
+box-shadow:0px 0px 20px rgba(176,38,255,0.15);
+}
+
+.contact-card:hover{
+transform:translateY(-8px);
+box-shadow:0px 0px 35px rgba(255,79,216,0.35);
+}
+
+.contact-title{
+font-size:24px;
+font-weight:bold;
+margin-bottom:15px;
+
+background: linear-gradient(
+90deg,
+#ff4fd8,
+#b026ff
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.contact-text{
+font-size:20px;
+line-height:2;
+color:#f8fafc;
+}
+
+/* ---------------- البطاقات ---------------- */
+
+.glass{
+background: rgba(255,255,255,0.05);
+
+padding:35px;
+
+border-radius:30px;
+
+backdrop-filter: blur(12px);
+
+margin-top:35px;
+
+border:1px solid rgba(255,255,255,0.1);
+
+box-shadow:0px 0px 20px rgba(176,38,255,0.15);
+
+transition:0.4s;
+
+animation: fadeUp 1s ease;
+}
+
+.glass:hover{
 transform:translateY(-6px);
-box-shadow:0px 0px 35px rgba(255,79,216,0.25);
-}}
+box-shadow:0px 0px 35px rgba(255,79,216,0.3);
+}
 
-.section-title{{
-font-size:38px;
+.section-title{
+font-size:40px;
 font-weight:bold;
 margin-bottom:20px;
 
@@ -261,9 +165,11 @@ background: linear-gradient(
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-}}
+}
 
-.skill{{
+/* ---------------- المهارات ---------------- */
+
+.skill{
 background: linear-gradient(
 135deg,
 #ff4fd8,
@@ -271,35 +177,192 @@ background: linear-gradient(
 );
 
 padding:16px;
+
 border-radius:18px;
+
 text-align:center;
+
 font-size:18px;
+
 font-weight:bold;
+
 margin:8px;
+
 color:white;
+
 transition:0.4s;
-}}
 
-.skill:hover{{
-transform:scale(1.05);
-}}
+box-shadow:0px 0px 15px rgba(176,38,255,0.3);
+}
 
-.footer{{
+.skill:hover{
+transform:scale(1.08);
+box-shadow:0px 0px 30px rgba(255,79,216,0.6);
+}
+
+/* ---------------- QR ---------------- */
+
+.qr-box{
+text-align:center;
+margin-top:40px;
+}
+
+.qr-box img{
+border-radius:25px;
+transition:0.4s;
+box-shadow:0px 0px 30px rgba(255,79,216,0.35);
+}
+
+.qr-box img:hover{
+transform:scale(1.06);
+box-shadow:0px 0px 45px rgba(255,79,216,0.6);
+}
+
+/* ---------------- دوائر متحركة ---------------- */
+
+.floating{
+position:fixed;
+border-radius:50%;
+filter:blur(2px);
+animation:float 8s infinite ease-in-out;
+z-index:-1;
+opacity:0.35;
+}
+
+.circle1{
+width:120px;
+height:120px;
+background:#ff4fd8;
+top:10%;
+left:5%;
+}
+
+.circle2{
+width:180px;
+height:180px;
+background:#7a5cff;
+top:40%;
+right:8%;
+animation-delay:2s;
+}
+
+.circle3{
+width:100px;
+height:100px;
+background:#b026ff;
+bottom:10%;
+left:20%;
+animation-delay:4s;
+}
+
+.circle4{
+width:150px;
+height:150px;
+background:#ff4fd8;
+bottom:20%;
+right:15%;
+animation-delay:1s;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0px) translateX(0px);
+}
+
+50%{
+transform:translateY(-30px) translateX(15px);
+}
+
+100%{
+transform:translateY(0px) translateX(0px);
+}
+
+}
+
+/* ---------------- شخصيات كرتونية تمشي ---------------- */
+
+.walker{
+position:fixed;
+bottom:0;
+font-size:60px;
+z-index:999;
+animation:walk 18s linear infinite;
+}
+
+.walker2{
+position:fixed;
+bottom:40px;
+font-size:55px;
+z-index:999;
+animation:walk2 22s linear infinite;
+}
+
+@keyframes walk{
+
+0%{
+left:-10%;
+}
+
+100%{
+left:110%;
+}
+
+}
+
+@keyframes walk2{
+
+0%{
+right:-10%;
+}
+
+100%{
+right:110%;
+}
+
+}
+
+/* ---------------- الفوتر ---------------- */
+
+.footer{
 text-align:center;
 padding:50px;
 font-size:18px;
 color:#c084fc;
-}}
+}
 
-a{{
-color:#f472b6;
-text-decoration:none;
-}}
+/* ---------------- ظهور ناعم ---------------- */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0px);
+}
+
+}
 
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- HERO ----------------
+# ---------------- عناصر متحركة ----------------
+
+st.markdown("""
+<div class="floating circle1"></div>
+<div class="floating circle2"></div>
+<div class="floating circle3"></div>
+<div class="floating circle4"></div>
+
+<div class="walker">👩🏻‍💻</div>
+<div class="walker2">🚶🏻‍♀️</div>
+""", unsafe_allow_html=True)
+
+# ---------------- الرئيسية ----------------
 
 st.markdown("""
 <h1 class="hero-title">
@@ -308,66 +371,67 @@ AL-Rashidi
 </h1>
 """, unsafe_allow_html=True)
 
-st.markdown(f"""
+st.markdown("""
 <p class="hero-sub">
-{hero_job}
+Computer Science Graduate
 </p>
 """, unsafe_allow_html=True)
 
-# ---------------- CONTACT ----------------
+# ---------------- التواصل ----------------
 
-col1, col2 = st.columns(2)
+st.markdown("""
+<div class="contact-box">
 
-with col1:
+<div class="contact-card">
+<div class="contact-title">Contact</div>
 
-    st.markdown(f"""
-    <div class="glass">
+<div class="contact-text">
 
-    <div class="section-title">
-    {contact_title}
-    </div>
+📞 +966 50 220 3750 <br>
 
-    📞 +966 50 220 3750 <br><br>
+📧 ghzlanalrashidi@gmail.com <br>
 
-    📧 ghzlanalrashidi@gmail.com <br><br>
+📍 Unaizah, Al-Qassim, Saudi Arabia
 
-    📍 Unaizah, Al-Qassim, Saudi Arabia
+</div>
+</div>
 
-    </div>
-    """, unsafe_allow_html=True)
+<div class="contact-card">
+<div class="contact-title">Links</div>
 
-with col2:
+<div class="contact-text">
 
-    st.markdown(f"""
-    <div class="glass">
+🔗 github.com/Ghzlan175 <br><br>
 
-    <div class="section-title">
-    {links_title}
-    </div>
+🔗 linkedin.com/in/Ghzlan-alrashidi
 
-    🔗 <a href="https://github.com/Ghzlan175" target="_blank">
-    github.com/Ghzlan175
-    </a><br><br>
+</div>
+</div>
 
-    🔗 <a href="https://linkedin.com/in/Ghzlan-alrashidi" target="_blank">
-    linkedin.com/in/Ghzlan-alrashidi
-    </a>
-
-    </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 # ---------------- PROFILE ----------------
 
-st.markdown(f"""
+st.markdown("""
 <div class="glass">
 
 <div class="section-title">
-{profile_title}
+PROFILE
 </div>
 
-<p style="font-size:22px; line-height:2;">
+<p style="font-size:22px; line-height:2; color:#f8fafc;">
 
-{profile_text}
+Computer Science graduate with a strong academic record
+(Second Class Honors).
+
+Skilled in software development,
+data analysis,
+and web technologies.
+
+Passionate about problem-solving,
+continuous learning,
+and developing impactful technical solutions.
 
 </p>
 
@@ -376,16 +440,22 @@ st.markdown(f"""
 
 # ---------------- EDUCATION ----------------
 
-st.markdown(f"""
+st.markdown("""
 <div class="glass">
 
 <div class="section-title">
-{education_title}
+EDUCATION
 </div>
 
-<p style="font-size:22px; line-height:2;">
+<p style="font-size:22px; line-height:2; color:#f8fafc;">
 
-{education_text}
+Bachelor of Science in Computer Science <br>
+
+Al-Qassim University (2020 - 2025) <br>
+
+GPA : 4.70 / 5.00 <br>
+
+Second-Class Honors
 
 </p>
 
@@ -394,9 +464,9 @@ st.markdown(f"""
 
 # ---------------- TECHNICAL SKILLS ----------------
 
-st.markdown(f"""
+st.markdown("""
 <div class="section-title">
-{skills_title}
+TECHNICAL SKILLS
 </div>
 """, unsafe_allow_html=True)
 
@@ -410,7 +480,7 @@ skills = [
     "JavaScript",
     "Git & GitHub",
     "WordPress",
-    "OCR"
+    "OCR Technology"
 ]
 
 cols = st.columns(5)
@@ -424,105 +494,81 @@ for i, skill in enumerate(skills):
             unsafe_allow_html=True
         )
 
-# ---------------- SOFT SKILLS ----------------
-
-st.markdown(f"""
-<div class="section-title">
-{soft_title}
-</div>
-""", unsafe_allow_html=True)
-
-soft_skills = [
-    "Problem Solving",
-    "Communication",
-    "Analytical Thinking",
-    "Time Management",
-    "Team Collaboration",
-    "Attention to Detail"
-]
-
-cols2 = st.columns(3)
-
-for i, skill in enumerate(soft_skills):
-
-    with cols2[i % 3]:
-
-        st.markdown(
-            f'<div class="skill">{skill}</div>',
-            unsafe_allow_html=True
-        )
-
 # ---------------- PROJECTS ----------------
 
-st.markdown(f"""
+st.markdown("""
 <div class="glass">
 
 <div class="section-title">
-{project_title}
+PROJECTS
 </div>
 
-<p style="font-size:22px; line-height:2;">
+<p style="font-size:22px; line-height:2; color:#f8fafc;">
 
-{project_text}
+<strong>SmartLab | Graduation Project</strong><br><br>
+
+• Developed a smart laboratory management system
+using Python, Flutter, and SQLite.<br>
+
+• Integrated OCR technology for automated text recognition.<br>
+
+• Designed a user-friendly interface
+to improve workflow efficiency.
 
 </p>
 
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- WORK EXPERIENCE ----------------
+# ---------------- EXPERIENCE ----------------
 
-st.markdown(f"""
+st.markdown("""
 <div class="glass">
 
 <div class="section-title">
-{work_title}
+WORK EXPERIENCE
 </div>
 
-<p style="font-size:22px; line-height:2;">
+<p style="font-size:22px; line-height:2; color:#f8fafc;">
 
-{work_text}
+<strong>
+IT Intern | King Saud Hospital
+</strong>
+
+<br><br>
+
+• Developed and maintained the hospital website using WordPress.<br>
+
+• Managed databases using SQLite.<br>
+
+• Provided technical support for systems.
 
 </p>
 
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- LANGUAGES ----------------
+# ---------------- QR ----------------
+
+drive_url = "https://drive.google.com/drive/folders/1iQAwK4MJc2qY7GIf2XUJyms26E8HoMtN?usp=drive_link"
 
 st.markdown(f"""
-<div class="glass">
+<div class="glass qr-box">
 
 <div class="section-title">
-{lang_title}
+PORTFOLIO
 </div>
 
-<p style="font-size:22px; line-height:2;">
-
-{lang_text}
-
+<p style="font-size:20px; color:#f5d0fe;">
+Click QR Code
 </p>
 
-</div>
-""", unsafe_allow_html=True)
-
-# ---------------- COMMENTS ----------------
-
-st.markdown(f"""
-<div class="glass">
-
-<div class="section-title">
-{comments_title}
-</div>
+<a href="{drive_url}" target="_blank">
+<img src="data:image/jpeg;base64,{qr_base64}" width="260">
+</a>
 
 </div>
 """, unsafe_allow_html=True)
-
-comment = st.text_area("", placeholder=comment_placeholder)
-
-if st.button(send_btn):
-
-    st.success("✔")
 
 # ---------------- FOOTER ----------------
 
