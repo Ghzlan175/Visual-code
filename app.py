@@ -207,25 +207,51 @@ Computer Science Graduate
 
 # ---------------- CONTACT ----------------
 
-st.markdown("""
-<div class="contact">
+col1, col2 = st.columns(2)
 
-📞 +966 50 220 3750 <br>
+with col1:
+    st.markdown("""
+    <div class="glass">
 
-📧 ghzlanalrashidi@gmail.com <br>
+    <div class="section-title">
+    CONTACT
+    </div>
 
-📍 Unaizah, Al-Qassim, Saudi Arabia <br>
+    <p style="font-size:22px; line-height:2.2; color:#fbcfe8;">
 
-🔗 <a href="https://github.com/Ghzlan175" target="_blank">
-github.com/Ghzlan175
-</a><br>
+    📞 +966 50 220 3750 <br>
 
-🔗 <a href="https://linkedin.com/in/Ghzlan-alrashidi" target="_blank">
-linkedin.com/in/Ghzlan-alrashidi
-</a>
+    📧 ghzlanalrashidi@gmail.com <br>
 
-</div>
-""", unsafe_allow_html=True)
+    📍 Unaizah, Al-Qassim, Saudi Arabia
+
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="glass">
+
+    <div class="section-title">
+    LINKS
+    </div>
+
+    <p style="font-size:22px; line-height:2.2;">
+
+    🔗 <a href="https://github.com/Ghzlan175" target="_blank">
+    github.com/Ghzlan175
+    </a><br><br>
+
+    🔗 <a href="https://linkedin.com/in/Ghzlan-alrashidi" target="_blank">
+    linkedin.com/in/Ghzlan-alrashidi
+    </a>
+
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 # ---------------- PROFILE ----------------
 
