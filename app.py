@@ -9,10 +9,15 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- QR Code ----------------
+# ---------------- QR CODE ----------------
 
 with open("QR.jpeg", "rb") as image_file:
     qr_base64 = base64.b64encode(image_file.read()).decode()
+
+# ---------------- CAT GIF ----------------
+
+with open("cat.gif", "rb") as gif_file:
+    cat_base64 = base64.b64encode(gif_file.read()).decode()
 
 # ---------------- CSS ----------------
 
@@ -20,7 +25,12 @@ st.markdown("""
 <style>
 
 [data-testid="stAppViewContainer"]{
-background: linear-gradient(135deg, #050505, #0f0a1f, #1a0026);
+background: linear-gradient(
+135deg,
+#050505,
+#0f0a1f,
+#1a0026
+);
 background-attachment: fixed;
 overflow-x:hidden;
 }
@@ -92,7 +102,7 @@ font-size:19px;
 line-height:2;
 }
 
-/* ---------------- GLASS CARDS ---------------- */
+/* ---------------- GLASS ---------------- */
 
 .glass{
 background: rgba(255,255,255,0.05);
@@ -200,7 +210,7 @@ box-shadow:0px 0px 25px rgba(255,79,216,0.3);
 transform:scale(1.05);
 }
 
-/* ---------------- CAT ANIMATION ---------------- */
+/* ---------------- CAT ---------------- */
 
 .cat-container{
 position:fixed;
@@ -216,16 +226,19 @@ width:120px;
 height:auto;
 }
 
+/* ---------------- ANIMATIONS ---------------- */
+
 @keyframes walk{
+
 0%{
 right:-200px;
 }
+
 100%{
 right:110%;
 }
-}
 
-/* ---------------- ANIMATION ---------------- */
+}
 
 .fade-section{
 animation: fadeUp 1s ease;
@@ -257,11 +270,11 @@ color:#c084fc;
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- CAT ----------------
+# ---------------- CAT DISPLAY ----------------
 
-st.markdown("""
+st.markdown(f"""
 <div class="cat-container">
-    <img src="https://media.tenor.com/C9a0Q5x8QmAAAAAj/cat-walk.gif">
+<img src="data:image/gif;base64,{cat_base64}">
 </div>
 """, unsafe_allow_html=True)
 
@@ -355,6 +368,7 @@ Education
 Bachelor of Science in Computer Science<br><br>
 
 Al-Qassim University (2020 - 2025)<br><br>
+
 
 Second-Class Honors
 
