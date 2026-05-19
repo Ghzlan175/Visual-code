@@ -14,6 +14,8 @@ st.set_page_config(
 with open("QR.jpeg", "rb") as image_file:
     qr_base64 = base64.b64encode(image_file.read()).decode()
 
+drive_url = "https://drive.google.com/drive/folders/1iQAwK4MJc2qY7GIf2XUJyms26E8HoMtN?usp=drive_link"
+
 # ---------------- التصميم ----------------
 
 st.markdown("""
@@ -23,11 +25,11 @@ st.markdown("""
 background: linear-gradient(
 135deg,
 #050505,
-#0f0a1f,
-#1a0026
+#12051f,
+#1f0a2e
 );
 background-attachment: fixed;
-overflow:hidden;
+overflow-x:hidden;
 }
 
 [data-testid="stHeader"]{
@@ -35,18 +37,20 @@ background: rgba(0,0,0,0);
 }
 
 html, body, [class*="css"]{
-color:white;
 font-family:sans-serif;
+color:white;
 scroll-behavior:smooth;
 }
 
-/* ---------------- العنوان ---------------- */
+.block-container{
+padding-top:2rem;
+padding-bottom:4rem;
+}
 
 .hero-title{
 font-size:100px;
 font-weight:900;
 line-height:1;
-margin-top:80px;
 
 background: linear-gradient(
 90deg,
@@ -62,85 +66,24 @@ animation: fadeUp 1s ease;
 }
 
 .hero-sub{
-font-size:32px;
+font-size:30px;
 color:#f5d0fe;
 margin-top:20px;
 margin-bottom:40px;
 
-animation: fadeUp 1.5s ease;
+animation: fadeUp 1.4s ease;
 }
-
-/* ---------------- التواصل ---------------- */
-
-.contact-box{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-margin-top:30px;
-margin-bottom:30px;
-}
-
-.contact-card{
-flex:1;
-min-width:260px;
-
-background: rgba(255,255,255,0.06);
-
-padding:25px;
-
-border-radius:25px;
-
-backdrop-filter: blur(10px);
-
-border:1px solid rgba(255,255,255,0.1);
-
-transition:0.4s;
-
-box-shadow:0px 0px 20px rgba(176,38,255,0.15);
-}
-
-.contact-card:hover{
-transform:translateY(-8px);
-box-shadow:0px 0px 35px rgba(255,79,216,0.35);
-}
-
-.contact-title{
-font-size:24px;
-font-weight:bold;
-margin-bottom:15px;
-
-background: linear-gradient(
-90deg,
-#ff4fd8,
-#b026ff
-);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.contact-text{
-font-size:20px;
-line-height:2;
-color:#f8fafc;
-}
-
-/* ---------------- البطاقات ---------------- */
 
 .glass{
 background: rgba(255,255,255,0.05);
-
 padding:35px;
-
 border-radius:30px;
-
 backdrop-filter: blur(12px);
+margin-top:30px;
+border:1px solid rgba(255,255,255,0.08);
 
-margin-top:35px;
-
-border:1px solid rgba(255,255,255,0.1);
-
-box-shadow:0px 0px 20px rgba(176,38,255,0.15);
+box-shadow:
+0px 0px 20px rgba(176,38,255,0.12);
 
 transition:0.4s;
 
@@ -148,13 +91,14 @@ animation: fadeUp 1s ease;
 }
 
 .glass:hover{
-transform:translateY(-6px);
-box-shadow:0px 0px 35px rgba(255,79,216,0.3);
+transform:translateY(-8px);
+box-shadow:
+0px 0px 40px rgba(255,79,216,0.25);
 }
 
 .section-title{
-font-size:40px;
-font-weight:bold;
+font-size:38px;
+font-weight:800;
 margin-bottom:20px;
 
 background: linear-gradient(
@@ -167,7 +111,22 @@ background: linear-gradient(
 -webkit-text-fill-color:transparent;
 }
 
-/* ---------------- المهارات ---------------- */
+.contact-card{
+background: rgba(255,255,255,0.05);
+padding:20px;
+border-radius:20px;
+text-align:center;
+font-size:20px;
+margin:10px;
+border:1px solid rgba(255,255,255,0.08);
+
+transition:0.3s;
+}
+
+.contact-card:hover{
+transform:translateY(-5px);
+background: rgba(255,255,255,0.08);
+}
 
 .skill{
 background: linear-gradient(
@@ -177,167 +136,71 @@ background: linear-gradient(
 );
 
 padding:16px;
-
 border-radius:18px;
-
 text-align:center;
-
 font-size:18px;
-
 font-weight:bold;
-
 margin:8px;
-
 color:white;
 
 transition:0.4s;
 
-box-shadow:0px 0px 15px rgba(176,38,255,0.3);
+box-shadow:
+0px 0px 15px rgba(176,38,255,0.3);
 }
 
 .skill:hover{
-transform:scale(1.08);
-box-shadow:0px 0px 30px rgba(255,79,216,0.6);
+transform:scale(1.05);
+box-shadow:
+0px 0px 30px rgba(255,79,216,0.4);
 }
-
-/* ---------------- QR ---------------- */
 
 .qr-box{
 text-align:center;
-margin-top:40px;
 }
 
 .qr-box img{
 border-radius:25px;
 transition:0.4s;
-box-shadow:0px 0px 30px rgba(255,79,216,0.35);
+
+box-shadow:
+0px 0px 25px rgba(255,79,216,0.25);
 }
 
 .qr-box img:hover{
-transform:scale(1.06);
-box-shadow:0px 0px 45px rgba(255,79,216,0.6);
+transform:scale(1.05);
+
+box-shadow:
+0px 0px 45px rgba(255,79,216,0.5);
 }
-
-/* ---------------- دوائر متحركة ---------------- */
-
-.floating{
-position:fixed;
-border-radius:50%;
-filter:blur(2px);
-animation:float 8s infinite ease-in-out;
-z-index:-1;
-opacity:0.35;
-}
-
-.circle1{
-width:120px;
-height:120px;
-background:#ff4fd8;
-top:10%;
-left:5%;
-}
-
-.circle2{
-width:180px;
-height:180px;
-background:#7a5cff;
-top:40%;
-right:8%;
-animation-delay:2s;
-}
-
-.circle3{
-width:100px;
-height:100px;
-background:#b026ff;
-bottom:10%;
-left:20%;
-animation-delay:4s;
-}
-
-.circle4{
-width:150px;
-height:150px;
-background:#ff4fd8;
-bottom:20%;
-right:15%;
-animation-delay:1s;
-}
-
-@keyframes float{
-
-0%{
-transform:translateY(0px) translateX(0px);
-}
-
-50%{
-transform:translateY(-30px) translateX(15px);
-}
-
-100%{
-transform:translateY(0px) translateX(0px);
-}
-
-}
-
-/* ---------------- شخصيات كرتونية تمشي ---------------- */
-
-.walker{
-position:fixed;
-bottom:0;
-font-size:60px;
-z-index:999;
-animation:walk 18s linear infinite;
-}
-
-.walker2{
-position:fixed;
-bottom:40px;
-font-size:55px;
-z-index:999;
-animation:walk2 22s linear infinite;
-}
-
-@keyframes walk{
-
-0%{
-left:-10%;
-}
-
-100%{
-left:110%;
-}
-
-}
-
-@keyframes walk2{
-
-0%{
-right:-10%;
-}
-
-100%{
-right:110%;
-}
-
-}
-
-/* ---------------- الفوتر ---------------- */
 
 .footer{
 text-align:center;
-padding:50px;
+padding:40px;
 font-size:18px;
 color:#c084fc;
 }
 
-/* ---------------- ظهور ناعم ---------------- */
+a{
+color:#f9a8d4;
+text-decoration:none;
+}
+
+a:hover{
+color:white;
+}
+
+/* الأنيميشن */
+
+.fade-section{
+animation: fadeUp 1s ease;
+}
 
 @keyframes fadeUp{
 
 from{
 opacity:0;
-transform:translateY(40px);
+transform:translateY(60px);
 }
 
 to{
@@ -347,77 +210,122 @@ transform:translateY(0px);
 
 }
 
+/* الشخصيات الكرتونية */
+
+.character{
+position:fixed;
+bottom:20px;
+z-index:999;
+font-size:45px;
+animation: moveCharacter linear infinite;
+opacity:0.9;
+}
+
+.character1{
+left:-100px;
+animation-duration:18s;
+}
+
+.character2{
+left:-200px;
+bottom:80px;
+animation-duration:25s;
+}
+
+.character3{
+left:-300px;
+bottom:140px;
+animation-duration:30s;
+}
+
+@keyframes moveCharacter{
+0%{
+transform:translateX(0);
+}
+100%{
+transform:translateX(130vw);
+}
+}
+
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- عناصر متحركة ----------------
+# ---------------- الرسوم المتحركة ----------------
 
 st.markdown("""
-<div class="floating circle1"></div>
-<div class="floating circle2"></div>
-<div class="floating circle3"></div>
-<div class="floating circle4"></div>
-
-<div class="walker">👩🏻‍💻</div>
-<div class="walker2">🚶🏻‍♀️</div>
+<div class="character character1">🩷</div>
+<div class="character character2">✨</div>
+<div class="character character3">💜</div>
 """, unsafe_allow_html=True)
 
-# ---------------- الرئيسية ----------------
+# ---------------- HERO ----------------
 
 st.markdown("""
+<div class="fade-section">
+
 <h1 class="hero-title">
 Ghzlan <br>
 AL-Rashidi
 </h1>
-""", unsafe_allow_html=True)
 
-st.markdown("""
 <p class="hero-sub">
 Computer Science Graduate
 </p>
+
+</div>
 """, unsafe_allow_html=True)
 
-# ---------------- التواصل ----------------
+# ---------------- CONTACT ----------------
 
 st.markdown("""
-<div class="contact-box">
-
-<div class="contact-card">
-<div class="contact-title">Contact</div>
-
-<div class="contact-text">
-
-📞 +966 50 220 3750 <br>
-
-📧 ghzlanalrashidi@gmail.com <br>
-
-📍 Unaizah, Al-Qassim, Saudi Arabia
-
-</div>
-</div>
-
-<div class="contact-card">
-<div class="contact-title">Links</div>
-
-<div class="contact-text">
-
-🔗 github.com/Ghzlan175 <br><br>
-
-🔗 linkedin.com/in/Ghzlan-alrashidi
-
-</div>
-</div>
-
+<div class="section-title">
+Contact
 </div>
 """, unsafe_allow_html=True)
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("""
+    <div class="contact-card">
+    📞 +966 50 220 3750
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="contact-card">
+    📧 ghzlanalrashidi@gmail.com
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="contact-card">
+    📍 Unaizah, Al-Qassim, Saudi Arabia
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="contact-card">
+    🔗 <a href="https://github.com/Ghzlan175" target="_blank">
+    github.com/Ghzlan175
+    </a>
+
+    <br><br>
+
+    🔗 <a href="https://linkedin.com/in/Ghzlan-alrashidi" target="_blank">
+    linkedin.com/in/Ghzlan-alrashidi
+    </a>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ---------------- PROFILE ----------------
 
 st.markdown("""
-<div class="glass">
+<div class="glass fade-section">
 
 <div class="section-title">
-PROFILE
+Profile
 </div>
 
 <p style="font-size:22px; line-height:2; color:#f8fafc;">
@@ -441,13 +349,13 @@ and developing impactful technical solutions.
 # ---------------- EDUCATION ----------------
 
 st.markdown("""
-<div class="glass">
+<div class="glass fade-section">
 
 <div class="section-title">
-EDUCATION
+Education
 </div>
 
-<p style="font-size:22px; line-height:2; color:#f8fafc;">
+<p style="font-size:22px; line-height:2;">
 
 Bachelor of Science in Computer Science <br>
 
@@ -466,7 +374,7 @@ Second-Class Honors
 
 st.markdown("""
 <div class="section-title">
-TECHNICAL SKILLS
+Technical Skills
 </div>
 """, unsafe_allow_html=True)
 
@@ -480,7 +388,7 @@ skills = [
     "JavaScript",
     "Git & GitHub",
     "WordPress",
-    "OCR Technology"
+    "OCR"
 ]
 
 cols = st.columns(5)
@@ -494,23 +402,57 @@ for i, skill in enumerate(skills):
             unsafe_allow_html=True
         )
 
+# ---------------- SOFT SKILLS ----------------
+
+st.markdown("""
+<div class="section-title">
+Soft Skills
+</div>
+""", unsafe_allow_html=True)
+
+soft_skills = [
+    "Problem Solving",
+    "Communication",
+    "Analytical Thinking",
+    "Time Management",
+    "Team Collaboration",
+    "Attention to Detail"
+]
+
+cols2 = st.columns(3)
+
+for i, skill in enumerate(soft_skills):
+
+    with cols2[i % 3]:
+
+        st.markdown(
+            f'<div class="skill">{skill}</div>',
+            unsafe_allow_html=True
+        )
+
 # ---------------- PROJECTS ----------------
 
 st.markdown("""
-<div class="glass">
+<div class="glass fade-section">
 
 <div class="section-title">
-PROJECTS
+Projects
 </div>
 
-<p style="font-size:22px; line-height:2; color:#f8fafc;">
+<p style="font-size:22px; line-height:2;">
 
-<strong>SmartLab | Graduation Project</strong><br><br>
+<strong>SmartLab | Graduation Project</strong>
+
+<br><br>
 
 • Developed a smart laboratory management system
-using Python, Flutter, and SQLite.<br>
+using Python, Flutter, and SQLite.
 
-• Integrated OCR technology for automated text recognition.<br>
+<br><br>
+
+• Integrated OCR technology for automated text recognition.
+
+<br><br>
 
 • Designed a user-friendly interface
 to improve workflow efficiency.
@@ -523,13 +465,13 @@ to improve workflow efficiency.
 # ---------------- EXPERIENCE ----------------
 
 st.markdown("""
-<div class="glass">
+<div class="glass fade-section">
 
 <div class="section-title">
-WORK EXPERIENCE
+Work Experience
 </div>
 
-<p style="font-size:22px; line-height:2; color:#f8fafc;">
+<p style="font-size:22px; line-height:2;">
 
 <strong>
 IT Intern | King Saud Hospital
@@ -537,9 +479,13 @@ IT Intern | King Saud Hospital
 
 <br><br>
 
-• Developed and maintained the hospital website using WordPress.<br>
+• Developed and maintained the hospital website using WordPress.
 
-• Managed databases using SQLite.<br>
+<br><br>
+
+• Managed databases using SQLite.
+
+<br><br>
 
 • Provided technical support for systems.
 
@@ -548,23 +494,45 @@ IT Intern | King Saud Hospital
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- QR ----------------
+# ---------------- LANGUAGES ----------------
 
-drive_url = "https://drive.google.com/drive/folders/1iQAwK4MJc2qY7GIf2XUJyms26E8HoMtN?usp=drive_link"
-
-st.markdown(f"""
-<div class="glass qr-box">
+st.markdown("""
+<div class="glass fade-section">
 
 <div class="section-title">
-PORTFOLIO
+Languages
+</div>
+
+<p style="font-size:22px; line-height:2;">
+
+• Arabic
+
+<br><br>
+
+• English
+
+</p>
+
+</div>
+""", unsafe_allow_html=True)
+
+# ---------------- QR CODE ----------------
+
+st.markdown(f"""
+<div class="glass qr-box fade-section">
+
+<div class="section-title">
+Portfolio QR Code
 </div>
 
 <p style="font-size:20px; color:#f5d0fe;">
-Click QR Code
+Click the QR Code
 </p>
 
 <a href="{drive_url}" target="_blank">
+
 <img src="data:image/jpeg;base64,{qr_base64}" width="260">
+
 </a>
 
 </div>
