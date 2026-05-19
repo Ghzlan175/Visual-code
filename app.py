@@ -9,12 +9,12 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- تحويل صورة QR إلى Base64 ----------------
+# ---------------- QR CODE ----------------
 
-with open("QR.JPEG", "rb") as image_file:
+with open("QR.jpeg", "rb") as image_file:
     qr_base64 = base64.b64encode(image_file.read()).decode()
 
-# ---------------- تصميم الموقع ----------------
+# ---------------- التصميم ----------------
 
 st.markdown("""
 <style>
@@ -79,7 +79,7 @@ border-radius:30px;
 
 backdrop-filter: blur(12px);
 
-margin-top:30px;
+margin-top:20px;
 
 border:1px solid rgba(255,255,255,0.1);
 
@@ -190,7 +190,7 @@ transform:translateY(0px);
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- الصفحة الرئيسية ----------------
+# ---------------- HERO ----------------
 
 st.markdown("""
 <h1 class="hero-title">
@@ -205,7 +205,7 @@ Computer Science Graduate
 </p>
 """, unsafe_allow_html=True)
 
-# ---------------- معلومات التواصل ----------------
+# ---------------- CONTACT ----------------
 
 st.markdown("""
 <div class="contact">
@@ -238,7 +238,7 @@ PROFILE
 
 <p style="font-size:22px; line-height:2; color:#f8fafc;">
 
-Computer Science graduate with a GPA of 4.70/5.00
+Computer Science graduate with a strong academic record
 (Second Class Honors).
 
 Skilled in software development,
@@ -271,7 +271,6 @@ Bachelor of Science in Computer Science <br>
 
 Al-Qassim University (2020 - 2025) <br>
 
-GPA : 4.70 / 5.00 <br>
 
 Second-Class Honors
 
@@ -406,30 +405,6 @@ using Canva and Microsoft Office.
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- CERTIFICATES ----------------
-
-st.markdown("""
-<div class="glass">
-
-<div class="section-title">
-CERTIFICATES & LICENSES
-</div>
-
-<p style="font-size:22px; line-height:2; color:#f8fafc;">
-
-• General Aptitude Test (Qiyas): 87%<br>
-
-• Professional Teacher License –
-General Educational Test: 74%<br>
-
-• Professional License –
-Specialized Test (2025): 70%
-
-</p>
-
-</div>
-""", unsafe_allow_html=True)
-
 # ---------------- LANGUAGES ----------------
 
 st.markdown("""
@@ -450,16 +425,12 @@ LANGUAGES
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- QR CODE آخر الصفحة ----------------
+# ---------------- QR CODE ----------------
 
 drive_url = "https://drive.google.com/drive/folders/1iQAwK4MJc2qY7GIf2XUJyms26E8HoMtN?usp=drive_link"
 
 st.markdown(f"""
 <div class="glass qr-box">
-
-<div class="section-title">
-PORTFOLIO QR CODE
-</div>
 
 <p style="font-size:20px; color:#f5d0fe;">
 Click the QR Code to open my portfolio
