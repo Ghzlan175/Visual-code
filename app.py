@@ -9,12 +9,12 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- قراءة صورة QR ----------------
+# ---------------- QR Code ----------------
 
 with open("QR.jpeg", "rb") as image_file:
     qr_base64 = base64.b64encode(image_file.read()).decode()
 
-# ---------------- تصميم CSS ----------------
+# ---------------- CSS ----------------
 
 st.markdown("""
 <style>
@@ -35,7 +35,7 @@ font-family:sans-serif;
 scroll-behavior:smooth;
 }
 
-/* ---------------- العنوان ---------------- */
+/* ---------------- HERO ---------------- */
 
 .hero{
 padding-top:70px;
@@ -44,7 +44,7 @@ animation: fadeUp 1s ease;
 }
 
 .hero-title{
-font-size:90px;
+font-size:95px;
 font-weight:900;
 line-height:1;
 margin-bottom:15px;
@@ -65,7 +65,7 @@ font-size:28px;
 color:#f5d0fe;
 }
 
-/* ---------------- التواصل ---------------- */
+/* ---------------- CONTACT ---------------- */
 
 .contact-box{
 display:flex;
@@ -92,12 +92,12 @@ font-size:19px;
 line-height:2;
 }
 
-/* ---------------- البطاقات ---------------- */
+/* ---------------- GLASS CARDS ---------------- */
 
 .glass{
 background: rgba(255,255,255,0.05);
 
-padding:28px;
+padding:30px;
 
 border-radius:28px;
 
@@ -136,11 +136,11 @@ background: linear-gradient(
 
 .text{
 font-size:20px;
-line-height:1.9;
+line-height:1.8;
 color:#f3f4f6;
 }
 
-/* ---------------- المهارات ---------------- */
+/* ---------------- SKILLS ---------------- */
 
 .skill{
 background: linear-gradient(
@@ -172,7 +172,7 @@ box-shadow:0px 0px 15px rgba(176,38,255,0.25);
 transform:scale(1.05);
 }
 
-/* ---------------- الروابط ---------------- */
+/* ---------------- LINKS ---------------- */
 
 a{
 color:#f9a8d4;
@@ -200,29 +200,32 @@ box-shadow:0px 0px 25px rgba(255,79,216,0.3);
 transform:scale(1.05);
 }
 
-/* ---------------- القطة المتحركة ---------------- */
+/* ---------------- CAT ANIMATION ---------------- */
 
-.cat{
+.cat-container{
 position:fixed;
 bottom:0;
-right:-220px;
-width:140px;
+right:-200px;
 z-index:9999;
-animation: walk 20s linear infinite;
+animation: walk 18s linear infinite;
 pointer-events:none;
+}
+
+.cat-container img{
+width:120px;
+height:auto;
 }
 
 @keyframes walk{
 0%{
-right:-220px;
+right:-200px;
 }
-
 100%{
 right:110%;
 }
 }
 
-/* ---------------- ظهور العناصر ---------------- */
+/* ---------------- ANIMATION ---------------- */
 
 .fade-section{
 animation: fadeUp 1s ease;
@@ -242,7 +245,7 @@ transform:translateY(0px);
 
 }
 
-/* ---------------- الفوتر ---------------- */
+/* ---------------- FOOTER ---------------- */
 
 .footer{
 text-align:center;
@@ -254,13 +257,15 @@ color:#c084fc;
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- القطة المتحركة ----------------
+# ---------------- CAT ----------------
 
 st.markdown("""
-<img class="cat" src="cat.gif">
+<div class="cat-container">
+    <img src="https://media.tenor.com/C9a0Q5x8QmAAAAAj/cat-walk.gif">
+</div>
 """, unsafe_allow_html=True)
 
-# ---------------- العنوان ----------------
+# ---------------- HERO ----------------
 
 st.markdown("""
 <div class="hero">
@@ -277,7 +282,7 @@ Computer Science Graduate
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- التواصل ----------------
+# ---------------- CONTACT ----------------
 
 st.markdown("""
 <div class="contact-box">
@@ -347,11 +352,9 @@ Education
 
 <div class="text">
 
-Bachelor of Science in Computer Science <br><br>
+Bachelor of Science in Computer Science<br><br>
 
-Al-Qassim University (2020 - 2025) <br><br>
-
-GPA : 4.70 / 5.00 <br><br>
+Al-Qassim University (2020 - 2025)<br><br>
 
 Second-Class Honors
 
@@ -480,7 +483,7 @@ Languages
 
 <div class="text">
 
-• Arabic <br><br>
+• Arabic<br><br>
 
 • English
 
